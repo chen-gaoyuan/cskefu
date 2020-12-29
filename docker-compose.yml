@@ -10,11 +10,12 @@ services:
       - ./nginx/logs:/var/log/nginx
       - ./nginx/conf.d:/etc/nginx/conf.d
       - ./nginx/certs:/certs
+      - ./nginx/html:/usr/share/nginx/html
     depends_on:
       - contact-center
 
   contact-center:
-    image: ${CC_IMAGE:-chatopera/contact-center:develop}
+    image: ${CC_IMAGE:-contact-center:dev}
     restart: always
     ports:
       - "${CC_WEB_PORT:-8035}:8035"
